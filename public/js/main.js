@@ -35,15 +35,15 @@ jQuery(document).ready(function () {
             $.each(contentdata, function(i, item) {
                 var row = $('<tr>');
                 row.append($('<td>').text(item.name));
-                row.append($('<td>').text(item.lastname));
-                row.append($('<td>').text(item.position));
+                row.append($('<td>').text(item.last_name));
+                row.append($('<td>').text(item.position_title));
                 let editButton = $("<button>", {
                     type: "button",
                     class: "btn btn-outline-success btn-sm ml-1 edit_user",
                     "data-userid":item.id,
                     "data-username":item.name,
-                    "data-userlastname":item.lastname,
-                    "data-userposition":item.position,
+                    "data-userlastname":item.last_name,
+                    "data-userpositionid":item.position_id,
                     "data-toggle":"modal",
                     "data-target": "#editUserModal",
                     text: "Edit"
@@ -102,9 +102,11 @@ jQuery(document).ready(function () {
         let userId = $(this).data('userid');
         let username = $(this).data('username');
         let userlastname = $(this).data('userlastname');
+        let userpositionId = $(this).data('userpositionid');
         $('#editUser #user_id').val(userId);
         $('#editUser #user_name').val(username);
         $('#editUser #user_last_name').val(userlastname);
+        $('#editUser #user_position').val(userpositionId);
 
         $('#editNodeModal').modal('show');
     });

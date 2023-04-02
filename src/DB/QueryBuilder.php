@@ -26,6 +26,11 @@ class QueryBuilder extends DataBase
      * @var string
      */
     protected $primaryKey = 'id';
+    /**
+     * @var array
+     */
+    protected $join = [];
+
 
     /**
      * @param $columns
@@ -74,6 +79,11 @@ class QueryBuilder extends DataBase
     public function get()
     {
         $query = "SELECT {$this->select} FROM {$this->table}";
+
+        $joinClause = $this->buildJoinClause();
+        if (!empty($joinClause)) {
+            $query .= $joinClause;
+        }
 
         if (!empty($this->where)) {
             $query .= ' WHERE ' . implode(" AND ", array_map(function ($where) {
@@ -161,5 +171,29 @@ class QueryBuilder extends DataBase
             return $this->query($query, $values)->rowCount();
         }
         return 0;
+    }
+
+    /**
+     * @param string $table
+     * @param string $firstColumn
+     * @param string $operator
+     * @param string $secondColumn
+     * @return $this
+     */
+    public function join(string $table, string $firstColumn, string $operator, string $secondColumn): self
+    {
+        $this->join[] = ["type" => "LEFT JOIN", "table" => $table, "first_column" => $firstColumn, "operator" => $operator, "second_column" => $secondColumn];
+        return $this;
+    }
+    /**
+     * @return string
+     */
+    protected function buildJoinClause(): string
+    {
+        $joinClause = '';
+        foreach ($this->join as $join) {
+            $joinClause .= " {$join['type']} {$join['table']} ON {$join['first_column']} {$join['operator']} {$join['second_column']}";
+        }
+        return $joinClause;
     }
 }
