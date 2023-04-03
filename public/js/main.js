@@ -73,19 +73,37 @@ jQuery(document).ready(function () {
     getMainData(contentdata);
 
     $('#createUser #user_name').on('input', function () {
-        let span = $('#createUser #nameError');
+        let span = $('#createUser #user_nameError');
         span.text('');
         $(this).removeClass('is-invalid');
     });
 
     $('#createUser #user_last_name').on('input', function () {
-        let span = $('#createUser #lastnameError');
+        let span = $('#createUser #user_last_nameError');
         span.text('');
         $(this).removeClass('is-invalid');
     });
 
     $('#createUser #user_position').on('change', function () {
-        let span = $('#createUser #lastnameError');
+        let span = $('#createUser #user_positionError');
+        span.text('');
+        $(this).removeClass('is-invalid');
+    });
+
+    $('#editUser #user_name').on('input', function () {
+        let span = $('#editUser #user_nameError');
+        span.text('');
+        $(this).removeClass('is-invalid');
+    });
+
+    $('#editUser #user_last_name').on('input', function () {
+        let span = $('#editUser #user_last_nameError');
+        span.text('');
+        $(this).removeClass('is-invalid');
+    });
+
+    $('#editUser #user_position').on('change', function () {
+        let span = $('#editUser #user_positionError');
         span.text('');
         $(this).removeClass('is-invalid');
     });
@@ -178,6 +196,7 @@ jQuery(document).ready(function () {
     $('#deleteUser').submit(function (event) {
         event.preventDefault();
         let userId = $('#deleteUser #user_id').val();
+        console.log(userId)
         let formData = $(this).serialize();
         jQuery.ajax({
             url: $(this).attr('action') + "?user_id=" + userId,

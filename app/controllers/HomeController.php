@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $positions = (new QueryBuilder())->table('positions')->get();
+        $positions = (new Position())->all();
         $data = [
             'title' => 'Home Page',
             'site_name' => 'Anna Borisenko Test task',
@@ -20,14 +20,4 @@ class HomeController extends Controller
         $this->view->render('home', $data);
     }
 
-    public function jsonData(): Response
-    {
-
-        $users = (new QueryBuilder())
-            ->table('users')
-            ->select('users.id, users.name, users.last_name, positions.id AS position_id, positions.title AS position_title')
-            ->join('positions', 'users.position_id', '=', 'positions.id')
-            ->get();
-        return response()->json(['data' => $users]);
-    }
 }

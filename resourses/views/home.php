@@ -33,7 +33,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="user_position">Position</label>
-                        <select class="custom-select" name="position" id="user_position">
+                        <select class="custom-select" name="user_position" id="user_position">
                             <option value="" disabled selected>Choose position</option>
                             <?php foreach ($contentdata["positions"] as $position) {?>
                             <option value="<?=  $position['id'] ?>"><?=  $position['title'] ?></option>

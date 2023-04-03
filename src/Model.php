@@ -64,4 +64,8 @@ class Model
         $this->queryBuilder->where($this->primaryKey, '=', $id);
         return $this->queryBuilder->get()[0];
     }
+    public function all()
+    {
+        return $this->queryBuilder->get();
+    }
 }
