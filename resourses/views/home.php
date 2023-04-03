@@ -127,5 +127,21 @@
 
 <div id="datacontent" style="display: none;"><?= json_encode($contentdata) ?></div>
 <div id="content" class="container-fluid">
-
+</div>
+<div class="container-fluid">
+    <h2>Part 2</h2>
+    <table class="table">
+        <tr>
+            <?php foreach (array_keys($contentdata['goods'][0]) as $column) { ?>
+                <th><?= $column ?></th>
+            <?php } ?>
+        </tr>
+        <?php foreach ($contentdata['goods'] as $raw) { ?>
+            <tr>
+                <?php foreach ($raw as $column_value) { ?>
+                    <td><?= $column_value ?></td>
+                <?php } ?>
+            </tr>
+        <?php } ?>
+    </table>
 </div>
