@@ -196,7 +196,6 @@ jQuery(document).ready(function () {
     $('#deleteUser').submit(function (event) {
         event.preventDefault();
         let userId = $('#deleteUser #user_id').val();
-        console.log(userId)
         let formData = $(this).serialize();
         jQuery.ajax({
             url: $(this).attr('action') + "?user_id=" + userId,

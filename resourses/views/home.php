@@ -114,7 +114,7 @@
                 <p id="confirmation_text"></p>
                 <p> Are you sure? </p>
             </div>
-            <form id="" action="/delete_user" method="post">
+            <form id="deleteUser" action="/delete_user" method="post">
                 <input type="hidden" name="user_id" id="user_id">
                 <div class="modal-footer justify-content-center">
                     <button type="submit" class="btn btn-danger">Yes, I am</button>
