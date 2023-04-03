@@ -29,4 +29,9 @@ class DataBase extends Connection
         $stmt->execute($params);
         return $stmt;
     }
+    public function tableExists($table): bool
+    {
+        $result = $this->query("SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name = '$table'");
+        return $result->fetchColumn() == 1;
+    }
 }

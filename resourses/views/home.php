@@ -130,6 +130,7 @@
 </div>
 <div class="container-fluid">
     <h2>Part 2</h2>
+    <?php if (!empty($contentdata['goods'])) { ?>
     <table class="table">
         <tr>
             <?php foreach (array_keys($contentdata['goods'][0]) as $column) { ?>
@@ -144,4 +145,17 @@
             </tr>
         <?php } ?>
     </table>
+    <?php } ?>
+
+    <div class="my-2 card">
+        <h3>this is how the query looks like to task part 2</h3>
+        "SELECT goods.name, goods.id, goods.article, goods.name, goods.price, goods.ean, goods.vat, field1.name , value1.name
+        FROM goods
+        LEFT JOIN additional_goods_field_values AS agfv1 ON goods.id = agfv1.good_id
+        LEFT JOIN additional_fields AS field1 ON agfv1.additional_field_id = field1.id
+        LEFT JOIN additional_field_values AS value1 ON agfv1.additional_field_value_id = value1.id
+        LEFT JOIN additional_goods_field_values AS agfv2 ON goods.id = agfv2.good_id
+        LEFT JOIN additional_fields AS field2 ON agfv2.additional_field_id = field2.id
+        LEFT JOIN additional_field_values AS value2 ON agfv2.additional_field_value_id = value2.id"
+    </div>
 </div>
